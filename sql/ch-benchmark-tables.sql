@@ -10,7 +10,7 @@ SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'SQL_ASCII';
 SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
+--SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
@@ -23,11 +23,11 @@ SET default_tablespace = '';
 --
 
 CREATE TABLE public.nation (
-    n_nationkey integer NOT NULL,
+    n_nationkey integer NOT NULL PRIMARY KEY,
     n_name character(25) NOT NULL,
     n_regionkey integer NOT NULL,
     n_comment character(152) NOT NULL
-);
+) WITH (GLOBAL);
 
 
 --
@@ -35,10 +35,10 @@ CREATE TABLE public.nation (
 --
 
 CREATE TABLE public.region (
-    r_regionkey integer NOT NULL,
+    r_regionkey integer NOT NULL PRIMARY KEY,
     r_name character(55) NOT NULL,
     r_comment character(152) NOT NULL
-);
+) WITH (GLOBAL);
 
 
 --
@@ -46,14 +46,14 @@ CREATE TABLE public.region (
 --
 
 CREATE TABLE public.supplier (
-    su_suppkey integer NOT NULL,
+    su_suppkey integer NOT NULL PRIMARY KEY,
     su_name character(25) NOT NULL,
     su_address character varying(40) NOT NULL,
     su_nationkey integer NOT NULL,
     su_phone character(15) NOT NULL,
     su_acctbal numeric(12,2) NOT NULL,
     su_comment character(101) NOT NULL
-);
+) WITH (GLOBAL);
 
 
 --
@@ -10151,40 +10151,40 @@ COPY public.supplier (su_suppkey, su_name, su_address, su_nationkey, su_phone, s
 -- Name: nation nation_pkey; Type: CONSTRAINT; Schema: public; 
 --
 
-ALTER TABLE ONLY public.nation
-    ADD CONSTRAINT nation_pkey PRIMARY KEY (n_nationkey);
+--ALTER TABLE ONLY public.nation
+--    ADD CONSTRAINT nation_pkey PRIMARY KEY (n_nationkey);
 
 
 --
 -- Name: region region_pkey; Type: CONSTRAINT; Schema: public; 
 --
 
-ALTER TABLE ONLY public.region
-    ADD CONSTRAINT region_pkey PRIMARY KEY (r_regionkey);
+--ALTER TABLE ONLY public.region
+--    ADD CONSTRAINT region_pkey PRIMARY KEY (r_regionkey);
 
 
 --
 -- Name: supplier supplier_pkey; Type: CONSTRAINT; Schema: public; 
 --
 
-ALTER TABLE ONLY public.supplier
-    ADD CONSTRAINT supplier_pkey PRIMARY KEY (su_suppkey);
+--ALTER TABLE ONLY public.supplier
+--    ADD CONSTRAINT supplier_pkey PRIMARY KEY (su_suppkey);
 
 
 --
 -- Name: nation nation_n_regionkey_fkey; Type: FK CONSTRAINT; Schema: public; 
 --
 
-ALTER TABLE ONLY public.nation
-    ADD CONSTRAINT nation_n_regionkey_fkey FOREIGN KEY (n_regionkey) REFERENCES public.region(r_regionkey) ON DELETE CASCADE;
+--ALTER TABLE ONLY public.nation
+--    ADD CONSTRAINT nation_n_regionkey_fkey FOREIGN KEY (n_regionkey) REFERENCES public.region(r_regionkey) ON DELETE CASCADE;
 
 
 --
 -- Name: supplier supplier_su_nationkey_fkey; Type: FK CONSTRAINT; Schema: public; 
 --
 
-ALTER TABLE ONLY public.supplier
-    ADD CONSTRAINT supplier_su_nationkey_fkey FOREIGN KEY (su_nationkey) REFERENCES public.nation(n_nationkey) ON DELETE CASCADE;
+--ALTER TABLE ONLY public.supplier
+--    ADD CONSTRAINT supplier_su_nationkey_fkey FOREIGN KEY (su_nationkey) REFERENCES public.nation(n_nationkey) ON DELETE CASCADE;
 
 
 --
