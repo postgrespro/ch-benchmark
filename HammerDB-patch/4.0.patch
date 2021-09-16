@@ -1,6 +1,15 @@
 diff -wruN HammerDB-upstream/HammerDB-4.0/src/postgresql/pgoltp.tcl HammerDB-4.0/src/postgresql/pgoltp.tcl
 --- HammerDB-upstream/HammerDB-4.0/src/postgresql/pgoltp.tcl	2020-10-26 17:58:52.000000000 +0700
-+++ HammerDB-4.0/src/postgresql/pgoltp.tcl	2021-09-15 18:03:17.865102841 +0700
++++ HammerDB-4.0/src/postgresql/pgoltp.tcl	2021-09-16 13:29:13.064705720 +0700
+@@ -493,7 +493,7 @@
+     no_o_all_local		SMALLINT;
+     rbk					SMALLINT;
+     item_id_array 		INT[];
+-    supply_wid_array	SMALLINT[];
++    supply_wid_array	INT[];
+     quantity_array		SMALLINT[];
+     order_line_array	SMALLINT[];
+     stock_dist_array	CHAR(24)[];
 @@ -1655,19 +1655,19 @@
  set sql(8) "CREATE TABLE ORDERS (O_ID NUMBER, O_W_ID NUMBER, O_D_ID NUMBER, O_C_ID NUMBER, O_CARRIER_ID NUMBER, O_OL_CNT NUMBER, O_ALL_LOCAL NUMBER, O_ENTRY_D DATE)"
  set sql(9) "CREATE TABLE ORDER_LINE (OL_W_ID NUMBER, OL_D_ID NUMBER, OL_O_ID NUMBER, OL_NUMBER NUMBER, OL_I_ID NUMBER, OL_DELIVERY_D DATE, OL_AMOUNT NUMBER, OL_SUPPLY_W_ID NUMBER, OL_QUANTITY NUMBER, OL_DIST_INFO CHAR(24))"
